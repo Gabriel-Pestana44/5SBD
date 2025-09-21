@@ -1,0 +1,17 @@
+SELECT * FROM cliente;
+SELECT cliente_nome, cidade FROM cliente;
+SELECT conta_numero,saldo FROM conta;
+SELECT cliente_nome FROM cliente WERE cidade = 'macaé;
+SELECT cliente_cod,cliente_nome FROM cliente WHERE cliente_cod BETWEEN 5 and 15;
+SELECT cliente_cod,cliente_nome FROM cliente;
+SELECT cidade FROM cliente WHERE cidade IN ('Niteroi', Volta Redonda', 'Itaboraí);
+SELECT cliente_nome FROM cliente WHERE cliente_nome LIKE 'F%';
+SELECT cliente_nome || 'mora em' || cidade AS "Frase" FROM cliente;
+FROM conta WHERE saldo > 9000 ORDER BY saldo DESC;
+FROM cliente WHERE cidade = 'Nova Iguaçu' OR cliente_nome LIKE '%Silva%';
+SELECT ROUND(saldo) AS Saldo_arredondado FROM conta;
+SELECT UPPER(cliente_nome) AS nome_maiusculo FROM cliente;
+SELECT cliente_nome FROM cliente WHERE cidade NOT IN ('Teresópolis', 'Campos dos Goytacazes');
+
+
+
