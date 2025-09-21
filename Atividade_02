@@ -1,0 +1,44 @@
+1
+SELECT UPPER(nome) AS nome_maiusculo FROM cliente;
+2
+SELECT INITCAP(nome) AS nome_formatado FROM cliente;
+3
+SELECT SUBSTR(nome, 1, 3) AS iniciais FROM cliente;
+4
+SELECT nome, LENGTH(nome) AS qtd_caracteres FROM cliente;
+5
+SELECT ROUND(saldo) AS saldo_arredondado FROM conta;
+6
+SELECT TRUNC(saldo) AS saldo_truncado FROM conta;
+7
+SELECT MOD(saldo, 1000) AS resto FROM conta;
+8
+SELECT SYSDATE AS data_atual FROM dual;
+9
+SELECT SYSDATE + 30 AS data_vencimento_simulada FROM dual;
+10
+SELECT num_conta,(SYSDATE - data_abertura) AS dias_abertura FROM conta;
+11
+SELECT num_conta, TO_CHAR(saldo, 'L999G999G999D99') AS saldo_formatado FROM conta;
+12
+SELECT num_conta, TO_CHAR(data_abertura, 'DD/MM/YYYY') AS data_formatada FROM conta;
+13
+SELECT num_conta, NVL(saldo, 0) AS saldo_tratado FROM conta;
+14
+SELECT nome, NVL(cidade, 'Sem cidade') AS cidade_tratada FROM cliente;
+15
+SELECT nome,
+  CASE
+  WHEN cidade = 'Niterói' THEN 'Região Metropolitana'
+  WHEN cidade = 'Resende' THEN 'Interior'
+  ELSE 'Outra Região'
+  END AS classificacao
+FROM cliente;
+
+16
+SELECT c.nome, ct.num_conta, ct.saldo FROM cliente c JOIN conta ct ON c.id_cliente = ct.id_cliente;
+17
+SELECT c.nome, a.nome_agencia FROM cliente c JOIN conta ct ON c.id_cliente = ct.id_cliente JOIN agencia a ON ct.id_agencia = a.id_agencia;
+18
+SELECT a.nome_agencia, c.nome FROM agencia a LEFT JOIN conta ct ON a.id_agencia = ct.id_agencia LEFT JOIN cliente c ON ct.id_cliente = c.id_cliente;
+
