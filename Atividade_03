@@ -1,0 +1,61 @@
+1
+SELECT c.nome, ct.num_conta
+FROM cliente c, conta ct
+WHERE c.id_cliente = ct.id_cliente;
+
+2
+Produto cartesiano (todas combinações de clientes e agências)
+SELECT c.nome, a.nome_agencia
+FROM cliente c, agencia a;
+
+3
+SELECT c.nome, a.cidade
+FROM cliente c, conta ct, agencia a
+WHERE c.id_cliente = ct.id_cliente
+  AND ct.id_agencia = a.id_agencia;
+
+4.
+SELECT SUM(saldo) AS saldo_total
+FROM conta;
+
+5
+SELECT MAX(saldo) AS maior_saldo,
+       AVG(saldo) AS media_saldo
+FROM conta;
+
+6
+SELECT COUNT(*) AS total_contas
+FROM conta;
+
+7
+SELECT COUNT(DISTINCT cidade) AS qtd_cidades
+FROM cliente;
+
+8
+SELECT num_conta,
+       NVL(saldo, 0) AS saldo_tratado
+FROM conta;
+9
+SELECT c.cidade, AVG(ct.saldo) AS media_saldo
+FROM cliente c
+JOIN conta ct ON c.id_cliente = ct.id_cliente
+GROUP BY c.cidade;
+
+10
+SELECT c.cidade, COUNT(ct.num_conta) AS qtd_contas
+FROM cliente c
+JOIN conta ct ON c.id_cliente = ct.id_cliente
+GROUP BY c.cidade
+HAVING COUNT(ct.num_conta) > 3;
+
+11
+SELECT a.cidade,
+       SUM(ct.saldo) AS total_saldo
+FROM agencia a
+JOIN conta ct ON a.id_agencia = ct.id_agencia
+GROUP BY ROLLUP(a.cidade);
+
+12
+SELECT cidade FROM cliente
+UNION
+SELECT cidade FROM agencia;
